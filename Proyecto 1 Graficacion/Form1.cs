@@ -6,18 +6,22 @@ namespace Proyecto_1_Graficacion
         Point mouse;
         int pX, pY;
         float scale, rotate;
+        List<Scene> scenes;
         Scene scene;
         bool isMouseDown;
         public Form()
         {
             InitializeComponent();
             
-
+           
             scene = new Scene(pictureBox);
+            scenes= new List<Scene>();
+            scenes.Add(scene);
             Figure fig = new Figure();
-            fig.Add(new PointF(50, 120));
+            fig.Add(new PointF(55, 120));
             fig.Add(new PointF(1100, 120));
             scene.Figures.Add(fig);
+            TB_FRAMES.Maximum = scenes.Count-1;
             pY = 100;
 
         }
@@ -44,6 +48,7 @@ namespace Proyecto_1_Graficacion
             TreeNode node = new TreeNode("Fig" + (TREE.Nodes.Count + 1));
             node.Tag = f;
             TREE.Nodes.Add(node);
+            
         }
 
         private void TREE_AfterSelect(object sender, TreeViewEventArgs e)
@@ -94,6 +99,7 @@ namespace Proyecto_1_Graficacion
         private void TB_SCALE_MouseUp(object sender, MouseEventArgs e)
         {
             TB_SCALE.Value = 100;
+            pY = 100;
         }
 
         private void TB_SCALE_Scroll(object sender, EventArgs e)
@@ -108,10 +114,70 @@ namespace Proyecto_1_Graficacion
              */
             scale += (float)(pY-TB_SCALE.Value)/100 ;
             pY= TB_SCALE.Value;
-            label1.Text= scale.ToString() ;
+           
              
 
         }
+
+        private void TB_MOVE_Scroll(object sender, EventArgs e)
+        {
+            f.Follow(scene.Figures[0].Pts[0], scene.Figures[0].Pts[1], (float)TB_MOVE.Value / 100);
+        }
+
+        private void ADD_SCENE_Click(object sender, EventArgs e)
+        {
+            Scene newScene = new Scene(pictureBox);
+            scenes.Add(newScene);
+            TB_FRAMES.Maximum= scenes.Count;
+            TB_FRAMES.Value = scenes.IndexOf(newScene);
+            scene = newScene;
+            TREE.Nodes.Clear();
+        }
+
+        private void TB_FRAMES_Scroll(object sender, EventArgs e)
+        {
+           
+            if(scenes.Count-1 >= TB_FRAMES.Value) {
+                TREE.Nodes.Clear();
+                scene = scenes[TB_FRAMES.Value];
+                f = null;
+                foreach (Figure figure in scene.Figures)
+                {
+                    TreeNode node = new TreeNode("Fig" + (scene.Figures.IndexOf(figure) + 1));
+                    node.Tag = figure;
+                    TREE.Nodes.Add(node);
+                }
+            }
+            
+            
+        }
+
+        private void Animate_Click(object sender, EventArgs e)
+        {
+            Animate.Text = "STOP"; 
+            TIMER.Tick += new EventHandler(TIMER_Tick2);
+            Animate.Click += new EventHandler(Stop_Click);
+        }
+        private void Stop_Click(object sender, EventArgs e)
+        {
+            Animate.Text = "ANIMATE";
+            TIMER.Tick += new EventHandler(TIMER_Tick);
+            Animate.Click += new EventHandler(Animate_Click);
+        }
+
+        private void TIMER_Tick2(object sender, EventArgs e)
+        {
+            int index = scenes.IndexOf(scene);
+            if (index == scenes.Count - 1)
+                index = 0;
+            else 
+                index++;
+            
+            scene = scenes[index];
+            scene.Render();
+        }
+
+        
 
         private void TB_ROTATION_MouseUp(object sender, MouseEventArgs e)
         {
