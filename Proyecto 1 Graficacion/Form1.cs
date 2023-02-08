@@ -2,33 +2,34 @@ namespace Proyecto_1_Graficacion
 {
     public partial class Form : System.Windows.Forms.Form
     {
+        int index;
         static Figure f;
         Point mouse;
         int pX, pY;
         float scale, rotate;
-        List<Scene> scenes;
         Scene scene;
-        bool isMouseDown;
+        bool isMouseDown, animate;
+        
         public Form()
         {
             InitializeComponent();
             
            
             scene = new Scene(pictureBox);
-            scenes= new List<Scene>();
-            scenes.Add(scene);
-            Figure fig = new Figure();
-            fig.Add(new PointF(55, 120));
-            fig.Add(new PointF(1100, 120));
-            scene.Figures.Add(fig);
-            TB_FRAMES.Maximum = scenes.Count-1;
+            
+            //Figure fig = new Figure();
+            //fig.Add(new PointF(55, 120));
+            //fig.Add(new PointF(pictureBox.Width-200, 120));
+            //scene.Figures.Add(fig);
+            index = 0;
             pY = 100;
+            
 
         }
 
         private void TB_ROTATION_Scroll(object sender, EventArgs e)
         {
-            
+            f.rotation += (float)(TB_ROTATION.Value - pX);
             rotate += (float)(TB_ROTATION.Value - pX);
             pX = TB_ROTATION.Value;
         }
@@ -104,16 +105,11 @@ namespace Proyecto_1_Graficacion
 
         private void TB_SCALE_Scroll(object sender, EventArgs e)
         {
-            /*
-             * rotate += (float)(TB_ROTATION.Value - pX)/3;
-             * pX = TB_ROTATION.Value;
-             * 
-             * 
-             *  deltaY += (float)(ptY.Y - e.Location.Y) / 500;// delta y= escale
-             *  ptY.Y = e.Location.Y;
-             */
+            
+            f.scale += (float)(pY - TB_SCALE.Value) / 100;
             scale += (float)(pY-TB_SCALE.Value)/100 ;
             pY= TB_SCALE.Value;
+            label4.Text=f.scale.ToString();
            
              
 
@@ -121,63 +117,50 @@ namespace Proyecto_1_Graficacion
 
         private void TB_MOVE_Scroll(object sender, EventArgs e)
         {
-            f.Follow(scene.Figures[0].Pts[0], scene.Figures[0].Pts[1], (float)TB_MOVE.Value / 100);
+            
         }
-
-        private void ADD_SCENE_Click(object sender, EventArgs e)
+        private void NEW_FRAME_Click(object sender, EventArgs e)
         {
-            Scene newScene = new Scene(pictureBox);
-            scenes.Add(newScene);
-            TB_FRAMES.Maximum= scenes.Count;
-            TB_FRAMES.Value = scenes.IndexOf(newScene);
-            scene = newScene;
-            TREE.Nodes.Clear();
+            foreach(Figure figure in scene.Figures)
+            {
+                figure.changesQueue.Add(new Changes(TB_FRAMES.Value, figure.Centroid, figure.scale, figure.rotation));
+            }
         }
 
         private void TB_FRAMES_Scroll(object sender, EventArgs e)
         {
-           
-            if(scenes.Count-1 >= TB_FRAMES.Value) {
-                TREE.Nodes.Clear();
-                scene = scenes[TB_FRAMES.Value];
-                f = null;
-                foreach (Figure figure in scene.Figures)
-                {
-                    TreeNode node = new TreeNode("Fig" + (scene.Figures.IndexOf(figure) + 1));
-                    node.Tag = figure;
-                    TREE.Nodes.Add(node);
-                }
-            }
-            
-            
         }
 
         private void Animate_Click(object sender, EventArgs e)
         {
-            Animate.Text = "STOP"; 
-            TIMER.Tick += new EventHandler(TIMER_Tick2);
+            Animate.Text = "STOP";
+            animate = true;
             Animate.Click += new EventHandler(Stop_Click);
+           
+
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            String text = "";
+            foreach(Changes change in f.changesQueue)
+            {
+                text+= change.ToString();
+            }
+            label4.Text= text;
+        }
+
         private void Stop_Click(object sender, EventArgs e)
         {
             Animate.Text = "ANIMATE";
-            TIMER.Tick += new EventHandler(TIMER_Tick);
+            animate = false;
             Animate.Click += new EventHandler(Animate_Click);
         }
 
-        private void TIMER_Tick2(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            int index = scenes.IndexOf(scene);
-            if (index == scenes.Count - 1)
-                index = 0;
-            else 
-                index++;
-            
-            scene = scenes[index];
-            scene.Render();
+            f.TranslateToOrigin();
         }
-
-        
 
         private void TB_ROTATION_MouseUp(object sender, MouseEventArgs e)
         {
@@ -200,9 +183,81 @@ namespace Proyecto_1_Graficacion
                 f.Rotate(rotate);
                 f.TranslatePoints(f.Centroid);
             }
+            if (animate) {
+                if (index == TB_FRAMES.Maximum)
+                {
+                    TB_FRAMES.Value = 0;
+                    index = 0;
+                    
+                }
+                else
+                {
+                    TB_FRAMES.Value = ++index;
+                }
+                
+                for(int i=0; i < scene.Figures.Count; i++)
+                {
+                    Figure figure= scene.Figures[i];
+   
+                    Changes change1 ;
+                    Changes change2 ;
+                    
+                    for(int j = 0; j < figure.changesQueue.Count-1; j++)
+                    {
+                        if (TB_FRAMES.Value == 0) {
+                            figure.TranslateToOrigin();
+                            figure.Rotate(-figure.rotation);
+                            figure.Scale(1/figure.scale);
+                            figure.TranslatePoints(figure.Centroid);
+                        }
+                        if (isBetween(figure.changesQueue[j], figure.changesQueue[j+1])) {
+                            change1= figure.changesQueue[j];
+                            change2= figure.changesQueue[j+1];
+                            if (figure.changesQueue[figure.changesQueue.Count-1].position.Equals( figure.Centroid))
+                            {
+                                figure.TranslatePoints(figure.Centroid);
+                                figure.UpdateAttributes();
+
+                            }
+                            else
+                            { 
+                                figure.TranslateToOrigin();
+                                float scalation = Math.Abs((change1.scalation - change2.scalation) / (change2.frame - change1.frame));
+                                if (change1.scalation < change2.scalation)
+                                {
+                                    scalation += 1;
+                                }
+                                else if(change1.scalation > change2.scalation)
+                                {
+                                    scalation = 1 - scalation;
+                                }
+                                label4.Text= scalation.ToString();
+                                figure.Scale(scalation);
+                                figure.Rotate((change1.rotation - change2.rotation) / (change1.frame - change2.frame));
+                                figure.TranslatePoints(figure.Centroid);
+                                figure.Follow(change1.position, change2.position, (float)TB_FRAMES.Value / change2.frame);
+
+                            }
+                            break;
+                        }
+                            
+                    }
+                }
+
+                
+            }
+            
             rotate = 0;
             scale = 1;
             scene.Render();
+        }
+        private bool isBetween(Changes change1, Changes change2)
+        {
+            if(TB_FRAMES.Value >= change1.frame && TB_FRAMES.Value <= change2.frame)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

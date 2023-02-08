@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Proyecto_1_Graficacion
 {
     /* Figura
@@ -13,12 +14,17 @@ namespace Proyecto_1_Graficacion
      */
     public class Figure
     {
+        public List<Changes> changesQueue;
         public List<PointF> Pts;
         public PointF Centroid, Last;
+        public float rotation =0;
+        public float scale = 1;
+        
 
         public Figure()
         {
             Pts = new List<PointF>();
+            changesQueue = new List<Changes>();
         }
 
         /*Añade el punto y recalcula el centroide*/
@@ -49,6 +55,7 @@ namespace Proyecto_1_Graficacion
         /* Mueve la figura */
         public void Follow(PointF a, PointF b, float value)
         {
+            
             PointF pos = Util.Ins.NextStep(a, b, value);
             //Centroid = Util.Ins.NextStep(a, b, value);
             TranslateToOrigin();
@@ -92,7 +99,10 @@ namespace Proyecto_1_Graficacion
             Centroid.X /= Pts.Count;
             Centroid.Y /= Pts.Count;
         }
-
+        public override String ToString()
+        {
+            return "Centroid : " + Centroid.ToString() + "\n Rotation " + rotation.ToString() + "\n Scale " + scale.ToString();
+        }
     }
 }
 

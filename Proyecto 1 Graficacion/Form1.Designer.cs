@@ -37,27 +37,25 @@
             this.label_Rotation = new System.Windows.Forms.Label();
             this.TB_SCALE = new System.Windows.Forms.TrackBar();
             this.labelScale = new System.Windows.Forms.Label();
-            this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.TB_MOVE = new System.Windows.Forms.TrackBar();
-            this.ADD_SCENE = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.TB_FRAMES = new System.Windows.Forms.TrackBar();
+            this.NEW_FRAME = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.Animate = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_ROTATION)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_SCALE)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TB_MOVE)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_FRAMES)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.DimGray;
-            this.pictureBox.Location = new System.Drawing.Point(194, 94);
+            this.pictureBox.Location = new System.Drawing.Point(204, 80);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(1274, 580);
+            this.pictureBox.Size = new System.Drawing.Size(1000, 580);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
@@ -71,11 +69,11 @@
             // 
             this.TB_ROTATION.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.TB_ROTATION.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.TB_ROTATION.Location = new System.Drawing.Point(194, 699);
+            this.TB_ROTATION.Location = new System.Drawing.Point(194, 681);
             this.TB_ROTATION.Maximum = 360;
             this.TB_ROTATION.Minimum = -360;
             this.TB_ROTATION.Name = "TB_ROTATION";
-            this.TB_ROTATION.Size = new System.Drawing.Size(1274, 45);
+            this.TB_ROTATION.Size = new System.Drawing.Size(1010, 45);
             this.TB_ROTATION.TabIndex = 1;
             this.TB_ROTATION.Scroll += new System.EventHandler(this.TB_ROTATION_Scroll);
             this.TB_ROTATION.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TB_ROTATION_MouseUp);
@@ -108,7 +106,7 @@
             // label_Rotation
             // 
             this.label_Rotation.AutoSize = true;
-            this.label_Rotation.Location = new System.Drawing.Point(809, 681);
+            this.label_Rotation.Location = new System.Drawing.Point(673, 663);
             this.label_Rotation.Name = "label_Rotation";
             this.label_Rotation.Size = new System.Drawing.Size(52, 15);
             this.label_Rotation.TabIndex = 4;
@@ -116,7 +114,7 @@
             // 
             // TB_SCALE
             // 
-            this.TB_SCALE.Location = new System.Drawing.Point(1500, 94);
+            this.TB_SCALE.Location = new System.Drawing.Point(1233, 80);
             this.TB_SCALE.Maximum = 200;
             this.TB_SCALE.Name = "TB_SCALE";
             this.TB_SCALE.Orientation = System.Windows.Forms.Orientation.Vertical;
@@ -130,55 +128,37 @@
             // labelScale
             // 
             this.labelScale.AutoSize = true;
-            this.labelScale.Location = new System.Drawing.Point(1491, 24);
+            this.labelScale.Location = new System.Drawing.Point(1233, 24);
             this.labelScale.Name = "labelScale";
             this.labelScale.Size = new System.Drawing.Size(34, 15);
             this.labelScale.TabIndex = 6;
             this.labelScale.Text = "Scale";
             // 
-            // TB_MOVE
-            // 
-            this.TB_MOVE.Location = new System.Drawing.Point(194, 42);
-            this.TB_MOVE.Maximum = 100;
-            this.TB_MOVE.Name = "TB_MOVE";
-            this.TB_MOVE.Size = new System.Drawing.Size(1274, 45);
-            this.TB_MOVE.TabIndex = 7;
-            this.TB_MOVE.Scroll += new System.EventHandler(this.TB_MOVE_Scroll);
-            // 
-            // ADD_SCENE
-            // 
-            this.ADD_SCENE.BackColor = System.Drawing.Color.Thistle;
-            this.ADD_SCENE.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.ADD_SCENE.Location = new System.Drawing.Point(28, 590);
-            this.ADD_SCENE.Name = "ADD_SCENE";
-            this.ADD_SCENE.Size = new System.Drawing.Size(121, 23);
-            this.ADD_SCENE.TabIndex = 8;
-            this.ADD_SCENE.Text = "Next Frame";
-            this.ADD_SCENE.UseVisualStyleBackColor = false;
-            this.ADD_SCENE.Click += new System.EventHandler(this.ADD_SCENE_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(784, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 15);
-            this.label1.TabIndex = 9;
-            this.label1.Text = "Move";
-            // 
             // TB_FRAMES
             // 
-            this.TB_FRAMES.Location = new System.Drawing.Point(194, 765);
-            this.TB_FRAMES.Maximum = 1;
+            this.TB_FRAMES.Location = new System.Drawing.Point(194, 42);
+            this.TB_FRAMES.Maximum = 240;
             this.TB_FRAMES.Name = "TB_FRAMES";
-            this.TB_FRAMES.Size = new System.Drawing.Size(1274, 45);
-            this.TB_FRAMES.TabIndex = 10;
-            this.TB_FRAMES.Scroll += new System.EventHandler(this.TB_FRAMES_Scroll);
+            this.TB_FRAMES.Size = new System.Drawing.Size(1010, 45);
+            this.TB_FRAMES.TabIndex = 7;
+            this.TB_FRAMES.Scroll += new System.EventHandler(this.TB_MOVE_Scroll);
+            // 
+            // NEW_FRAME
+            // 
+            this.NEW_FRAME.BackColor = System.Drawing.Color.Thistle;
+            this.NEW_FRAME.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.NEW_FRAME.Location = new System.Drawing.Point(28, 590);
+            this.NEW_FRAME.Name = "NEW_FRAME";
+            this.NEW_FRAME.Size = new System.Drawing.Size(121, 23);
+            this.NEW_FRAME.TabIndex = 8;
+            this.NEW_FRAME.Text = "New Frame";
+            this.NEW_FRAME.UseVisualStyleBackColor = false;
+            this.NEW_FRAME.Click += new System.EventHandler(this.NEW_FRAME_Click);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(809, 747);
+            this.label2.Location = new System.Drawing.Point(642, 24);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 11;
@@ -195,17 +175,47 @@
             this.Animate.UseVisualStyleBackColor = false;
             this.Animate.Click += new System.EventHandler(this.Animate_Click);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(673, 711);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 15);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "label4";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(49, 666);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(49, 703);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 16;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1548, 841);
+            this.ClientSize = new System.Drawing.Size(1521, 862);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.Animate);
             this.Controls.Add(this.label2);
+            this.Controls.Add(this.NEW_FRAME);
             this.Controls.Add(this.TB_FRAMES);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.ADD_SCENE);
-            this.Controls.Add(this.TB_MOVE);
             this.Controls.Add(this.labelScale);
             this.Controls.Add(this.TB_SCALE);
             this.Controls.Add(this.label_Rotation);
@@ -215,12 +225,9 @@
             this.Controls.Add(this.pictureBox);
             this.Name = "Form";
             this.Text = "Form1";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_ROTATION)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_SCALE)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.TB_MOVE)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_FRAMES)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -238,12 +245,12 @@
         private Label label_Rotation;
         private TrackBar TB_SCALE;
         private Label labelScale;
-        private BindingSource bindingSource1;
-        private TrackBar TB_MOVE;
-        private Button ADD_SCENE;
-        private Label label1;
         private TrackBar TB_FRAMES;
+        private Button NEW_FRAME;
         private Label label2;
         private Button Animate;
+        private Label label4;
+        private Button button1;
+        private Button button2;
     }
 }
