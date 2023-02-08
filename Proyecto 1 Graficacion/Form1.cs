@@ -109,7 +109,7 @@ namespace Proyecto_1_Graficacion
             f.scale += (float)(pY - TB_SCALE.Value) / 100;
             scale += (float)(pY-TB_SCALE.Value)/100 ;
             pY= TB_SCALE.Value;
-            label4.Text=f.scale.ToString();
+            
            
              
 
@@ -147,7 +147,7 @@ namespace Proyecto_1_Graficacion
             {
                 text+= change.ToString();
             }
-            label4.Text= text;
+            
         }
 
         private void Stop_Click(object sender, EventArgs e)
@@ -231,7 +231,6 @@ namespace Proyecto_1_Graficacion
                                 {
                                     scalation = 1 - scalation;
                                 }
-                                label4.Text= scalation.ToString();
                                 figure.Scale(scalation);
                                 figure.Rotate((change1.rotation - change2.rotation) / (change1.frame - change2.frame));
                                 figure.TranslatePoints(figure.Centroid);
