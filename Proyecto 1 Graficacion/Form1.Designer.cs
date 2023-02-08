@@ -50,9 +50,9 @@
             // pictureBox
             // 
             this.pictureBox.BackColor = System.Drawing.Color.DimGray;
-            this.pictureBox.Location = new System.Drawing.Point(204, 80);
+            this.pictureBox.Location = new System.Drawing.Point(204, 57);
             this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(1000, 580);
+            this.pictureBox.Size = new System.Drawing.Size(898, 516);
             this.pictureBox.TabIndex = 0;
             this.pictureBox.TabStop = false;
             this.pictureBox.Click += new System.EventHandler(this.pictureBox_Click);
@@ -66,11 +66,11 @@
             // 
             this.TB_ROTATION.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.TB_ROTATION.Cursor = System.Windows.Forms.Cursors.Cross;
-            this.TB_ROTATION.Location = new System.Drawing.Point(194, 681);
+            this.TB_ROTATION.Location = new System.Drawing.Point(194, 594);
             this.TB_ROTATION.Maximum = 360;
             this.TB_ROTATION.Minimum = -360;
             this.TB_ROTATION.Name = "TB_ROTATION";
-            this.TB_ROTATION.Size = new System.Drawing.Size(1010, 45);
+            this.TB_ROTATION.Size = new System.Drawing.Size(908, 45);
             this.TB_ROTATION.TabIndex = 1;
             this.TB_ROTATION.Scroll += new System.EventHandler(this.TB_ROTATION_Scroll);
             this.TB_ROTATION.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TB_ROTATION_MouseUp);
@@ -83,7 +83,7 @@
             // 
             // TREE
             // 
-            this.TREE.Location = new System.Drawing.Point(28, 42);
+            this.TREE.Location = new System.Drawing.Point(28, 9);
             this.TREE.Name = "TREE";
             this.TREE.Size = new System.Drawing.Size(121, 490);
             this.TREE.TabIndex = 2;
@@ -92,7 +92,7 @@
             // NEW_FIGURE
             // 
             this.NEW_FIGURE.BackColor = System.Drawing.Color.Gold;
-            this.NEW_FIGURE.Location = new System.Drawing.Point(28, 551);
+            this.NEW_FIGURE.Location = new System.Drawing.Point(28, 505);
             this.NEW_FIGURE.Name = "NEW_FIGURE";
             this.NEW_FIGURE.Size = new System.Drawing.Size(121, 23);
             this.NEW_FIGURE.TabIndex = 3;
@@ -103,7 +103,7 @@
             // label_Rotation
             // 
             this.label_Rotation.AutoSize = true;
-            this.label_Rotation.Location = new System.Drawing.Point(673, 663);
+            this.label_Rotation.Location = new System.Drawing.Point(628, 576);
             this.label_Rotation.Name = "label_Rotation";
             this.label_Rotation.Size = new System.Drawing.Size(52, 15);
             this.label_Rotation.TabIndex = 4;
@@ -111,12 +111,12 @@
             // 
             // TB_SCALE
             // 
-            this.TB_SCALE.Location = new System.Drawing.Point(1233, 80);
+            this.TB_SCALE.Location = new System.Drawing.Point(1108, 67);
             this.TB_SCALE.Maximum = 200;
             this.TB_SCALE.Name = "TB_SCALE";
             this.TB_SCALE.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.TB_SCALE.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.TB_SCALE.Size = new System.Drawing.Size(45, 580);
+            this.TB_SCALE.Size = new System.Drawing.Size(45, 506);
             this.TB_SCALE.TabIndex = 5;
             this.TB_SCALE.Value = 100;
             this.TB_SCALE.Scroll += new System.EventHandler(this.TB_SCALE_Scroll);
@@ -125,7 +125,7 @@
             // labelScale
             // 
             this.labelScale.AutoSize = true;
-            this.labelScale.Location = new System.Drawing.Point(1233, 24);
+            this.labelScale.Location = new System.Drawing.Point(1108, 24);
             this.labelScale.Name = "labelScale";
             this.labelScale.Size = new System.Drawing.Size(34, 15);
             this.labelScale.TabIndex = 6;
@@ -133,10 +133,10 @@
             // 
             // TB_FRAMES
             // 
-            this.TB_FRAMES.Location = new System.Drawing.Point(194, 42);
+            this.TB_FRAMES.Location = new System.Drawing.Point(194, 24);
             this.TB_FRAMES.Maximum = 240;
             this.TB_FRAMES.Name = "TB_FRAMES";
-            this.TB_FRAMES.Size = new System.Drawing.Size(1010, 45);
+            this.TB_FRAMES.Size = new System.Drawing.Size(908, 45);
             this.TB_FRAMES.TabIndex = 7;
             this.TB_FRAMES.Scroll += new System.EventHandler(this.TB_MOVE_Scroll);
             // 
@@ -144,7 +144,7 @@
             // 
             this.NEW_FRAME.BackColor = System.Drawing.Color.Thistle;
             this.NEW_FRAME.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.NEW_FRAME.Location = new System.Drawing.Point(28, 590);
+            this.NEW_FRAME.Location = new System.Drawing.Point(28, 534);
             this.NEW_FRAME.Name = "NEW_FRAME";
             this.NEW_FRAME.Size = new System.Drawing.Size(121, 23);
             this.NEW_FRAME.TabIndex = 8;
@@ -155,7 +155,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(642, 24);
+            this.label2.Location = new System.Drawing.Point(635, 9);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 15);
             this.label2.TabIndex = 11;
@@ -164,7 +164,7 @@
             // Animate
             // 
             this.Animate.BackColor = System.Drawing.Color.GreenYellow;
-            this.Animate.Location = new System.Drawing.Point(28, 637);
+            this.Animate.Location = new System.Drawing.Point(28, 563);
             this.Animate.Name = "Animate";
             this.Animate.Size = new System.Drawing.Size(121, 23);
             this.Animate.TabIndex = 12;
@@ -176,7 +176,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1521, 862);
+            this.ClientSize = new System.Drawing.Size(1370, 749);
             this.Controls.Add(this.Animate);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.NEW_FRAME);
@@ -190,6 +190,7 @@
             this.Controls.Add(this.pictureBox);
             this.Name = "Form";
             this.Text = "Form1";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_ROTATION)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.TB_SCALE)).EndInit();

@@ -136,18 +136,15 @@ namespace Proyecto_1_Graficacion
             Animate.Text = "STOP";
             animate = true;
             Animate.Click += new EventHandler(Stop_Click);
+            foreach(Figure figure in scene.Figures)
+            {
+                figure.TranslateToOrigin();
+                figure.Rotate(-figure.rotation);
+                figure.Scale(1 / figure.scale);
+                figure.TranslatePoints(figure.Centroid);
+            }
            
 
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            String text = "";
-            foreach(Changes change in f.changesQueue)
-            {
-                text+= change.ToString();
-            }
-            
         }
 
         private void Stop_Click(object sender, EventArgs e)
@@ -155,11 +152,6 @@ namespace Proyecto_1_Graficacion
             Animate.Text = "ANIMATE";
             animate = false;
             Animate.Click += new EventHandler(Animate_Click);
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            f.TranslateToOrigin();
         }
 
         private void TB_ROTATION_MouseUp(object sender, MouseEventArgs e)
@@ -207,7 +199,7 @@ namespace Proyecto_1_Graficacion
                         if (TB_FRAMES.Value == 0) {
                             figure.TranslateToOrigin();
                             figure.Rotate(-figure.rotation);
-                            figure.Scale(1/figure.scale);
+                            figure.Scale(1 / figure.scale);
                             figure.TranslatePoints(figure.Centroid);
                         }
                         if (isBetween(figure.changesQueue[j], figure.changesQueue[j+1])) {
